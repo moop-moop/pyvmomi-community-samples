@@ -28,6 +28,7 @@ requests.packages.urllib3.disable_warnings()
 
 SNAPSHOT_LIMIT_SECONDS = 180
 
+
 def setup_args():
     parser = cli.build_arg_parser()
     parser.add_argument('-j', '--uuid', required=True,
@@ -98,7 +99,7 @@ task = vm.CreateSnapshot_Task(name=args.name,
                               quiesce=quiesce_flag)
 
 counter = 0
-while task.info.state not in ['success','error'] and counter < SNAPSHOT_LIMIT_SECONDS:
+while task.info.state not in ["success", "error"] and counter < SNAPSHOT_LIMIT_SECONDS:
     time.sleep(1)
     counter += 1
 print("Snapshot final status after {0} seconds: {1}".format(counter, task.info.state))
